@@ -6,7 +6,7 @@
 //
 
 import Foundation
-    
+
 /// A response containing a list of resources.
 public struct BuildsResponse: Codable {
 
@@ -15,7 +15,7 @@ public struct BuildsResponse: Codable {
 
     /// The requested relationship data.￼
     ///  Possible types: PrereleaseVersion, BetaTester, BetaBuildLocalization, AppEncryptionDeclaration, BetaAppReviewSubmission, App, BuildBetaDetail
-    public let include: [BuildRelationship]?
+    public let included: [BuildRelationship]?
 
     /// Navigational links that include the self-link.
     public let links: PagedDocumentLinks

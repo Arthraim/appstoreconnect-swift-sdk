@@ -11,12 +11,13 @@ public enum BuildRelationship: Codable {
     case app(App)
     case build(Build)
     case betaTester(BetaTester)
-    
+    case buildBetaDetails(BuildBetaDetail)
+
     enum TypeKeys: String, CodingKey {
         case type
     }
     enum CodingKeys: String, Decodable, CodingKey {
-        case apps, builds, betaTesters
+        case apps, builds, betaTesters, buildBetaDetails
     }
 
     public init(from decoder: Decoder) throws {
@@ -27,9 +28,11 @@ public enum BuildRelationship: Codable {
             self = try .build(Build(from: decoder))
         case .betaTesters:
             self = try .betaTester(BetaTester(from: decoder))
+        case .buildBetaDetails:
+            self = try .buildBetaDetails(BuildBetaDetail(from: decoder))
         }
     }
-    
+
     public func encode(to encoder: Encoder) throws {
         switch self {
         case .app(let value):
@@ -37,6 +40,8 @@ public enum BuildRelationship: Codable {
         case .build(let value):
             try value.encode(to: encoder)
         case .betaTester(let value):
+            try value.encode(to: encoder)
+        case .buildBetaDetails(let value):
             try value.encode(to: encoder)
         }
     }
