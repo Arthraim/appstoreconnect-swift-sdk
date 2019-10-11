@@ -96,7 +96,7 @@ public struct ListBuilds {
             case .id(let value):
                 return ("id", value.joinedByCommas())
             case .preReleaseVersion(let value):
-                return ("prereleaseversion", value.joinedByCommas())
+                return ("preReleaseVersion", value.joinedByCommas())
             case .processingState(let value):
                 return (ProcessingState.key, value.map({ $0.pair.value }).joinedByCommas())
             case .version(let value):
