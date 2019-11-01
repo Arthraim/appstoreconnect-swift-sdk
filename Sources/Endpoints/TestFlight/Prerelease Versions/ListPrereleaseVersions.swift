@@ -35,7 +35,7 @@ extension APIEndpoint where T == PreReleaseVersionsResponse {
 }
 
 public struct ListPrereleaseVersions {
-    
+
     /// Fields to return for included related types.
     public enum Field: NestableQueryParameter {
         case apps([App])
@@ -54,7 +54,7 @@ public struct ListPrereleaseVersions {
             }
         }
     }
-    
+
     /// Attributes, relationships, and IDs by which to filter.
     public enum Filter: NestableQueryParameter {
         case app([String])
@@ -68,7 +68,7 @@ public struct ListPrereleaseVersions {
         var pair: Pair {
             switch self {
             case .app(let value):
-                return ("apps", value.joinedByCommas())
+                return ("app", value.joinedByCommas())
             case .buildsExpired(let value):
                 return ("builds.expired", value.joinedByCommas())
             case .buildsProcessingState(let value):
@@ -82,7 +82,7 @@ public struct ListPrereleaseVersions {
             }
         }
     }
-    
+
     /// Relationship data to include in the response.
     public enum Include: String, CaseIterable, NestableQueryParameter {
         case app, builds
@@ -90,7 +90,7 @@ public struct ListPrereleaseVersions {
         static var key: String = "include"
         var pair: NestableQueryParameter.Pair { return (nil, rawValue) }
     }
-    
+
     /// Number of resources to return.
     public enum Limit: NestableQueryParameter {
         case builds(Int)
@@ -104,7 +104,7 @@ public struct ListPrereleaseVersions {
         }
 
     }
-    
+
     /// Attributes by which to sort.
     public enum Sort: String, CaseIterable, NestableQueryParameter {
         case versionAscending = "+version"
@@ -116,21 +116,21 @@ public struct ListPrereleaseVersions {
 }
 
 extension ListPrereleaseVersions.Field {
-    
+
     public enum App: String, CaseIterable, NestableQueryParameter {
         case betaAppLocalizations, betaAppReviewDetail, betaGroups, betaLicenseAgreement, betaTesters, builds, bundleId, name, preReleaseVersions, primaryLocale, sku
 
         static var key: String = "App"
         var pair: NestableQueryParameter.Pair { return (nil, rawValue) }
     }
-    
+
     public enum Build: String, CaseIterable, NestableQueryParameter {
         case app, appEncryptionDeclaration, betaAppReviewSubmission, betaBuildLocalizations, betaGroups, buildBetaDetail, expirationDate, expired, iconAssetToken, individualTesters, minOsVersion, preReleaseVersion, processingState, uploadedDate, usesNonExemptEncryption, version
 
         static var key: String = "build"
         var pair: NestableQueryParameter.Pair { return (nil, rawValue) }
     }
-    
+
     public enum PreReleaseVersion: String, CaseIterable, NestableQueryParameter {
         case app, builds, platform, version
 
@@ -140,7 +140,7 @@ extension ListPrereleaseVersions.Field {
 }
 
 extension ListPrereleaseVersions.Filter {
-    
+
     public enum BuildsProcessingState: String, CaseIterable, NestableQueryParameter {
         case PROCESSING, FAILED, INVALID, VALID
 
